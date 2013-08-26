@@ -18,9 +18,7 @@
 		$min_cost = $_GET['txtMinCost'];
 		$max_cost = $_GET['txtMaxCost'];
 		$search_result_url = 'http://54.252.202.20/PartB/search_results.php?txtWineName='.$wine_name.'&txtWineryName'.$winery_name.'&drpRegion'.$region_name.'&drpGrapeVariety'.$grape_variety_name.'&drpFromYear'.$from_yr.'&drpToYear'.$to_yr.'&txtMinWinesInStock'.$min_wines_stocked.'&txtMinWinesOrdered'.$min_wines_ordered.'&txtMinCost'.$min_cost.'&txtMaxCost'.$max_cost;
-		$x=0;
-		if($x==0)
-		{
+		
 		if (!$wine_name)
 		{
 			$valmsg .= "Wine Name cannot be empty<br>";
@@ -66,19 +64,18 @@
 			$valmsg .= "Maximum Cost has to be numeric<br>";	
 			$send_form = false;
 		}	
-		}
-		header('Location : http://54.252.202.20/PartB/search_results.php');
-		die();
+		echo $valmsg;
+		/*
 		if ($valmsg != "")
 			echo $valmsg;
 		else 
 		{
-		$x=1;
-		header('Location : search_results.php');
+			header('Location : search_results.php');
 		}
+		*/
 	}
 ?>
-	<form method="GET" action="">
+	<form method="GET" action="http://54.252.202.20/assign1/partB/search_results.php">
 	<table cellpadding="0" cellspacing="0" border="1" width="70%">
 		<tr>
 			<td>Wine Name : </td>
