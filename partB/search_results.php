@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Exploring Wines in a Region</title>
 </head>
-/*
+<!--
 The wine name, grape varieties, year, winery, and region.
 2. The cost of the wine in the inventory.
 3. The total number of bottles available at any price.
 4. The total stock sold of the wine.
 5. The total sales revenue for the wine.
-*/
+-->
 <body bgcolor="white">
 <?php
 
