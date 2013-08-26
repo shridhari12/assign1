@@ -65,14 +65,14 @@
 			$send_form = false;
 		}	
 		echo $valmsg;
-		/*
+		
 		if ($valmsg != "")
 			echo $valmsg;
 		else 
 		{
 			header('Location : search_results.php');
 		}
-		*/
+		
 	}
 ?>
 	<form method="GET" action="http://54.252.202.20/assign1/partB/search_results.php">
