@@ -25,6 +25,13 @@ The wine name, grape varieties, year, winery, and region.
   function displayWinesList($connection, $query, $regionName) {
     // Run the query on the server
 	
+	// Display generated query for testing
+		print "Query ===> ". $query;
+		
+	//	exit();
+		
+	
+	
 	// (1) Open the database connection
 	if (!($result = @ mysql_query ($query, $connection))) {
       showerror();
@@ -36,10 +43,12 @@ The wine name, grape varieties, year, winery, and region.
     // If the query has results ...
     if ($rowsFound > 0) {
       // ... print out a header
-      print "Wines of $regionName<br>";
+      print "Wines of {$region_name}<br>";
 	  
 	   // Report how many rows were found
     print "{$rowsFound} records found matching your criteria<br>";
+	
+	print "Click <a href='{$_SERVER['HTTP_REFERER']}'>here</a> to go to previous search page";   
 
       // and start a <table>.
 	print '<h2>Welcome to the Search Results Screen</h2>';
@@ -68,9 +77,7 @@ The wine name, grape varieties, year, winery, and region.
 	
 	}// end if $rowsFound body
 	else {
-	
 		print "<br /><td colspan=10><b>No records match your search criteria</b></td><br />";
-	
 	}
 	
 	} // end of function
@@ -80,21 +87,21 @@ The wine name, grape varieties, year, winery, and region.
     die("Could not connect");
   }
   
+	if (!mysql_select_db(DB_NAME, $connection)) {
+		showerror();
+	}
+	
 	// get the user data
-  $wine_name = $_GET['txtWineName'];
-$winery_name = $_GET['txtWineryName'];
-$region_name = $_GET['drpRegion'];
-$grape_variety_name = $_GET['drpGrapeVariety'];
-$from_yr = $_GET['drpFromYear'];
-$to_yr = $_GET['drpToYear'];
-$min_wines_stocked = $_GET['txtMinWinesInStock'];
-$min_wines_ordered = $_GET['txtMinWinesOrdered'];
-$min_cost = $_GET['txtMinCost'];
-$max_cost = $_GET['txtMaxCost'];
-  
-   if (!mysql_select_db(DB_NAME, $connection)) {
-    showerror();
-  }
+	$wine_name = $_GET['txtWineName'];
+	$winery_name = $_GET['txtWineryName'];
+	$region_name = $_GET['drpRegion'];
+	$grape_variety_name = $_GET['drpGrapeVariety'];
+	$from_yr = $_GET['drpFromYear'];
+	$to_yr = $_GET['drpToYear'];
+	$min_wines_stocked = $_GET['txtMinWinesInStock'];
+	$min_wines_ordered = $_GET['txtMinWinesOrdered'];
+	$min_cost = $_GET['txtMinCost'];
+	$max_cost = $_GET['txtMaxCost'];
 	
 	// (2) Run the query on the winestore through the connection
 	

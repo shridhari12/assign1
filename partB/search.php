@@ -17,7 +17,10 @@
 		$min_wines_ordered = $_GET['txtMinWinesOrdered'];
 		$min_cost = $_GET['txtMinCost'];
 		$max_cost = $_GET['txtMaxCost'];
-		$search_result_url = 'http://54.252.202.20/PartB/search_results.php?txtWineName='.$wine_name.'&txtWineryName'.$winery_name.'&drpRegion'.$region_name.'&drpGrapeVariety'.$grape_variety_name.'&drpFromYear'.$from_yr.'&drpToYear'.$to_yr.'&txtMinWinesInStock'.$min_wines_stocked.'&txtMinWinesOrdered'.$min_wines_ordered.'&txtMinCost'.$min_cost.'&txtMaxCost'.$max_cost;
+		//$search_result_url = 'http://54.252.202.20/PartB/search_results.php?txtWineName='.$wine_name.'&txtWineryName'.$winery_name.'&drpRegion'.$region_name.'&drpGrapeVariety'.$grape_variety_name.'&drpFromYear'.$from_yr.'&drpToYear'.$to_yr.'&txtMinWinesInStock'.$min_wines_stocked.'&txtMinWinesOrdered'.$min_wines_ordered.'&txtMinCost'.$min_cost.'&txtMaxCost'.$max_cost;
+		$search_result_url = 'http://54.252.202.20/assign1/partB/search_results.php?txtWineName='.$wine_name.'&txtWineryName='.$winery_name.'&drpRegion='.$region_name.'&drpGrapeVariety='.$grape_variety_name.'&drpFromYear='.$from_yr.'&drpToYear='.$to_yr.'&txtMinWinesInStock='.$min_wines_stocked.'&txtMinWinesOrdered='.$min_wines_ordered.'&txtMinCost='.$min_cost.'&txtMaxCost='.$max_cost;
+		print $search_result_url;
+		
 		
 		if (!$wine_name)
 		{
@@ -63,19 +66,27 @@
 		{
 			$valmsg .= "Maximum Cost has to be numeric<br>";	
 			$send_form = false;
-		}	
-		echo $valmsg;
+		}
+
+		if (($min_cost > $max_cost) && (is_numeric($min_cost) && (is_numeric($max_cost))))
+		{
+			$valmsg .= "Minimum cost cannot be greater than Maximum cost";
+			$send_form = false;
+		}
+		print $valmsg;
+		//exit();
 		
 		if ($valmsg != "")
-			echo $valmsg;
+			print "<font color='red'>".$valmsg."</font>";
 		else 
 		{
-			header('Location : search_results.php');
+			print "send form = ". $send_form;
+			header('Location: $search_result_url');
 		}
 		
 	}
 ?>
-	<form method="GET" action="http://54.252.202.20/assign1/partB/search_results.php">
+	<form method="GET" id="frmSearch">
 	<table cellpadding="0" cellspacing="0" border="1" width="70%">
 		<tr>
 			<td>Wine Name : </td>
