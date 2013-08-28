@@ -17,12 +17,9 @@
 		$min_wines_ordered = $_GET['txtMinWinesOrdered'];
 		$min_cost = $_GET['txtMinCost'];
 		$max_cost = $_GET['txtMaxCost'];
-		//$search_result_url = 'http://54.252.202.20/PartB/search_results.php?txtWineName='.$wine_name.'&txtWineryName'.$winery_name.'&drpRegion'.$region_name.'&drpGrapeVariety'.$grape_variety_name.'&drpFromYear'.$from_yr.'&drpToYear'.$to_yr.'&txtMinWinesInStock'.$min_wines_stocked.'&txtMinWinesOrdered'.$min_wines_ordered.'&txtMinCost'.$min_cost.'&txtMaxCost'.$max_cost;
 		$search_result_url = 'http://54.252.202.20/assign1/partB/search_results.php?txtWineName='.$wine_name.'&txtWineryName='.$winery_name.'&drpRegion='.$region_name.'&drpGrapeVariety='.$grape_variety_name.'&drpFromYear='.$from_yr.'&drpToYear='.$to_yr.'&txtMinWinesInStock='.$min_wines_stocked.'&txtMinWinesOrdered='.$min_wines_ordered.'&txtMinCost='.$min_cost.'&txtMaxCost='.$max_cost;
-		print $search_result_url;
 		
-		
-		if (!$wine_name)
+		if (empty($wine_name))
 		{
 			$valmsg .= "Wine Name cannot be empty<br>";
 			$send_form = false;
@@ -74,6 +71,7 @@
 			$send_form = false;
 		}
 		print $valmsg;
+		print $search_result_url;
 		//exit();
 		
 		if ($valmsg != "")
@@ -81,7 +79,7 @@
 		else 
 		{
 			print "send form = ". $send_form;
-			header('Location: $search_result_url');
+			header("Location: ".$search_result_url);
 		}
 		
 	}
